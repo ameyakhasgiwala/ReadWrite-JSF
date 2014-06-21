@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:rw="http://ameyakhasgiwala/tags/readWrite-taglib">
+
+<body>
+	<h1>Read Write Test</h1>
+	<h:form>
+	<h:commandButton value="Edit" rendered="#{rwTestBean.readOnly}" action="#{rwTestBean.enterWriteMode}" />
+	<h:commandButton value="Save" rendered="#{!rwTestBean.readOnly}" action="#{rwTestBean.enterReadMode}" /><br/><br/>
+	<rw:readWrite readOnlyOn="#{rwTestBean.readOnly}">
+	<!-- the JSF page goes as usual -->
+	<h:panelGrid columns="2">
+		
+		<h:outputLabel value="Text"/>
+		<h:inputText value="#{rwTestBean.text}" />
+		
+		<h:outputLabel value="Select" />
+		<h:selectOneMenu value="#{rwTestBean.selectOne}">
+			<f:selectItem itemLabel="Display" itemValue="Value" />
+			<f:selectItems value="#{rwTestBean.items}" />
+		</h:selectOneMenu>
+		
+		<h:outputLabel value="Radio" />
+		<h:selectOneRadio value="#{rwTestBean.selectBoolean}">
+			<f:selectItems value="#{rwTestBean.items}" />
+		</h:selectOneRadio>
+		
+		<h:outputLabel value="Link to References" />
+		<h:commandLink value="Command Link" target="_blank" />
+		
+		
+		
+		</h:panelGrid>
+	</rw:readWrite>
+	</h:form>
+</body>
+</html>
